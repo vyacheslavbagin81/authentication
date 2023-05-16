@@ -24,7 +24,7 @@ public class Role {
     @Column(name = "name_role")
     private String role;
 
-    @ManyToMany(mappedBy = "roleList", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy = "roleList", fetch = FetchType.LAZY)
     @Fetch(FetchMode.SUBSELECT)
     private List<PersonalData> personalDataList;
 

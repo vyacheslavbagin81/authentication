@@ -16,7 +16,7 @@ public class PersonalDataDaoImpl implements PersonalDataDao {
         EntityManager entityManager = WorkPersistence.readPersistence();
         List<PersonalData> personalDataList = entityManager.createQuery(sql).getResultList();
         entityManager.getTransaction().commit();
-        WorkPersistence.closePersistence(entityManager);
+        WorkPersistence.closePersistence();
         return personalDataList;
     }
 
@@ -24,7 +24,7 @@ public class PersonalDataDaoImpl implements PersonalDataDao {
     public PersonalData getPersonal(int id) {
         EntityManager entityManager = WorkPersistence.readPersistence();
         PersonalData personalData = entityManager.find(PersonalData.class, id);
-        WorkPersistence.closePersistence(entityManager);
+        WorkPersistence.closePersistence();
         return personalData;
     }
 
@@ -32,7 +32,7 @@ public class PersonalDataDaoImpl implements PersonalDataDao {
     public Role getPersonalOfRole(int role_id) {
         EntityManager entityManager = WorkPersistence.readPersistence();
         Role role = entityManager.find(Role.class, role_id);
-        WorkPersistence.closePersistence(entityManager);
+        WorkPersistence.closePersistence();
         return role;
     }
 
@@ -40,7 +40,7 @@ public class PersonalDataDaoImpl implements PersonalDataDao {
     public void deletePersonal(int id) {
         EntityManager entityManager = WorkPersistence.readPersistence();
         entityManager.remove(entityManager.find(PersonalData.class, id));
-        WorkPersistence.closePersistence(entityManager);
+        WorkPersistence.closePersistence();
     }
 
     @Override
@@ -51,7 +51,7 @@ public class PersonalDataDaoImpl implements PersonalDataDao {
         personalData.setDateAndTimeOfProfileModification(LocalDateTime.now());
         personalData.setDateAndTimeOfProfileCreation(pd.getDateAndTimeOfProfileCreation());
         entityManager.merge(personalData);
-        WorkPersistence.closePersistence(entityManager);
+        WorkPersistence.closePersistence();
     }
 
     @Override
@@ -59,6 +59,6 @@ public class PersonalDataDaoImpl implements PersonalDataDao {
         personalData.setDateAndTimeOfProfileCreation(LocalDateTime.now());
         EntityManager entityManager = WorkPersistence.readPersistence();
         entityManager.persist(personalData);
-        WorkPersistence.closePersistence(entityManager);
+        WorkPersistence.closePersistence();
     }
 }

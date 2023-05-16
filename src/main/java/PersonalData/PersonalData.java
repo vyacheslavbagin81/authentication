@@ -32,7 +32,7 @@ public class PersonalData {
     @Column(name = "data_modification")
     private LocalDateTime dateAndTimeOfProfileModification;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.EAGER)
     @Fetch(FetchMode.SUBSELECT)
     @JoinTable(name = "data_role",
             joinColumns = @JoinColumn(name = "personal_data_id"),

@@ -5,17 +5,17 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 public class WorkPersistence {
+    private static EntityManagerFactory emf;
+    private static EntityManager em;
     public static EntityManager readPersistence() {
-        EntityManagerFactory emf = Persistence
+        emf = Persistence
                 .createEntityManagerFactory("authentificationPersonalData");
-        EntityManager em = emf.createEntityManager();
+        em = emf.createEntityManager();
         em.getTransaction().begin();
         return em;
     }
 
-    public static void closePersistence(EntityManager entityManager) {
-        entityManager.getTransaction().commit();
-        EntityManagerFactory entityManagerFactory = entityManager.getEntityManagerFactory();
-        entityManager.close();
+    public static void closePersistence() {
+        emf.close();
     }
 }

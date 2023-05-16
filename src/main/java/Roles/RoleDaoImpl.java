@@ -14,7 +14,7 @@ public class RoleDaoImpl implements RoleDao {
         String sql = "select e from Role e";
         EntityManager entityManager = WorkPersistence.readPersistence();
         List<Role> roleList = entityManager.createQuery(sql).getResultList();
-        WorkPersistence.closePersistence(entityManager);
+        WorkPersistence.closePersistence();
         return roleList;
     }
 
@@ -22,7 +22,7 @@ public class RoleDaoImpl implements RoleDao {
     public Role getRole(int id) {
         EntityManager entityManager = WorkPersistence.readPersistence();
         Role role = entityManager.find(Role.class, id);
-        WorkPersistence.closePersistence(entityManager);
+        WorkPersistence.closePersistence();
         return role;
     }
 
@@ -30,14 +30,14 @@ public class RoleDaoImpl implements RoleDao {
     public void deleteRole(int id) {
         EntityManager entityManager = WorkPersistence.readPersistence();
         entityManager.remove(entityManager.find(Role.class, id));
-        WorkPersistence.closePersistence(entityManager);
+        WorkPersistence.closePersistence();
     }
 
     @Override
     public void addRole(Role role) {
         EntityManager entityManager = WorkPersistence.readPersistence();
         entityManager.persist(role);
-        WorkPersistence.closePersistence(entityManager);
+        WorkPersistence.closePersistence();
     }
 
 }
